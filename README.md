@@ -4,12 +4,12 @@
 [![Coverage Status](https://coveralls.io/repos/JuliaMath/Sleef.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/JuliaMath/Sleef.jl?branch=master)
 [![codecov.io](http://codecov.io/github/JuliaMath/Sleef.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaMath/Sleef.jl?branch=master)
 
-A port of the [SLEEF math library](https://github.com/shibatch/sleef) (original author Naoki Shibata) in pure Julia. This port includes a few extras including an `exp10` function and many bug fixes in the original code. It remains, however, not relaible for large argument values for the trigonometric functions. The library supports Float32 and Float64 types.
+A port of the [SLEEF math library](https://github.com/shibatch/sleef) (original author Naoki Shibata) in pure Julia. This port includes a few extras including an `exp10` function and many bug fixes in the original code. It remains, however, not reliable for large argument values for the trigonometric functions. The library supports Float32 and Float64 types.
 
 
 # Usage
 
-We recommend running julia with `-O3` for maximal performance using `Sleef.jl` and to also build a custom system image by running
+We recommend running Julia with `-O3` for maximal performance using `Sleef.jl` and to also build a custom system image by running
 ```julia
 # Pkg.add("WinRPM"); WinRPM.install("gcc")  # on Windows please first run this line
 julia> include(joinpath(dirname(JULIA_HOME),"share","julia","build_sysimg.jl"))
