@@ -1,4 +1,4 @@
-using Libm
+using Sleef
 using Base.Test
 
 isnzero{T<:AbstractFloat}(x::T) = signbit(x)

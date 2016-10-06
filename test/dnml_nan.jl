@@ -1,6 +1,6 @@
 @testset "denormal/nonnumber $T" for T in (Float32, Float64)
 
-@testset "denormal/nonnumber $xatan2" for xatan2 in (Libm.atan2_fast, Libm.atan2)
+@testset "denormal/nonnumber $xatan2" for xatan2 in (Sleef.atan2_fast, Sleef.atan2)
 
     @test xatan2(T(0.0),  T(-0.0)) === T(pi)
     @test xatan2(T(-0.0), T(-0.0)) === -T(pi)
@@ -86,155 +86,155 @@ end # denormal/nonumber atan2
 
 @testset "denormal/nonnumber xpow" begin
 
-    @test Libm.pow(T(1), T(NaN))   === T(1)
-    @test Libm.pow( T(NaN), T(0))  === T(1)
-    @test Libm.pow(-T(1), T(Inf))  === T(1)
-    @test Libm.pow(-T(1), T(-Inf)) === T(1)
+    @test Sleef.pow(T(1), T(NaN))   === T(1)
+    @test Sleef.pow( T(NaN), T(0))  === T(1)
+    @test Sleef.pow(-T(1), T(Inf))  === T(1)
+    @test Sleef.pow(-T(1), T(-Inf)) === T(1)
     
 
     xa = T[-100000.5, -100000, -3, -2.5, -2, -1.5, -1.0, -0.5]
     ya = T[-100000.5, -2.5, -1.5, -0.5, 0.5, 1.5, 2.5, 100000.5]
     for x in xa, y in ya
-        @test isnan(Libm.pow(x,y))
+        @test isnan(Sleef.pow(x,y))
     end
 
 
     x = T(NaN)
     ya = T[-100000.5, -100000, -3, -2.5, -2, -1.5, -1.0, -0.5, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 100000, 100000.5]
     for y in ya
-        @test isnan(Libm.pow(x,y))
+        @test isnan(Sleef.pow(x,y))
     end
 
 
     xa = T[-100000.5, -100000, -3, -2.5, -2, -1.5, -1.0, -0.5, -0.0, +0.0, 0.5, 1.5, 2.0, 2.5, 3.0, 100000, 100000.5]
     y = T(NaN)
     for x in xa
-        @test isnan(Libm.pow(x,y))
+        @test isnan(Sleef.pow(x,y))
     end
 
 
     x = T(0.0)
     ya = T[1, 3, 5, 7, 100001]
     for y in ya
-        @test ispzero(Libm.pow(x,y))
+        @test ispzero(Sleef.pow(x,y))
     end
  
 
     x = T(-0.0)
     ya = T[1, 3, 5, 7, 100001]
     for y in ya
-        @test isnzero(Libm.pow(x,y))
+        @test isnzero(Sleef.pow(x,y))
     end
 
 
     xa = T[0.0, -0.0]
     ya = T[0.5, 1.5, 2.0, 2.5, 4.0, 100000, 100000.5]
     for x in xa, y in ya
-        @test ispzero(Libm.pow(x,y))
+        @test ispzero(Sleef.pow(x,y))
     end
  
 
     xa = T[-0.999, -0.5, -0.0, +0.0, +0.5, +0.999]
     y = T(-Inf)
     for x in xa
-        @test Libm.pow(x,y) === T(Inf)
+        @test Sleef.pow(x,y) === T(Inf)
     end
  
 
     xa = T[-100000.5, -100000, -3, -2.5, -2, -1.5, 1.5, 2.0, 2.5, 3.0, 100000, 100000.5]
     y = T(-Inf)
     for x in xa
-        @test ispzero(Libm.pow(x,y))
+        @test ispzero(Sleef.pow(x,y))
     end
 
 
     xa = T[-0.999, -0.5, -0.0, +0.0, +0.5, +0.999]
     y = T(Inf)
     for x in xa
-        @test ispzero(Libm.pow(x,y))
+        @test ispzero(Sleef.pow(x,y))
     end
  
 
     xa = T[-100000.5, -100000, -3, -2.5, -2, -1.5, 1.5, 2.0, 2.5, 3.0, 100000, 100000.5]
     y = T(Inf)
     for x in xa
-        @test Libm.pow(x,y) === T(Inf)
+        @test Sleef.pow(x,y) === T(Inf)
     end
  
 
     x = T(-Inf)
     ya = T[-100001, -5, -3, -1]
     for y in ya
-        @test isnzero(Libm.pow(x,y))
+        @test isnzero(Sleef.pow(x,y))
     end
  
 
     x = T(-Inf)
     ya = T[-100000.5, -100000, -4, -2.5, -2, -1.5, -0.5]
     for y in ya
-        @test ispzero(Libm.pow(x,y))
+        @test ispzero(Sleef.pow(x,y))
     end
 
 
     x = T(-Inf)
     ya = T[1, 3, 5, 7, 100001]
     for y in ya
-        @test Libm.pow(x,y) === T(-Inf)
+        @test Sleef.pow(x,y) === T(-Inf)
     end
 
 
     x = T(-Inf)
     ya = T[0.5, 1.5, 2, 2.5, 3.5, 4, 100000, 100000.5]
     for y in ya
-        @test Libm.pow(x,y) === T(Inf)
+        @test Sleef.pow(x,y) === T(Inf)
     end
 
 
     x = T(Inf)
     ya = T[-100000.5, -100000, -3, -2.5, -2, -1.5, -1.0, -0.5]
     for y in ya
-        @test ispzero(Libm.pow(x,y))
+        @test ispzero(Sleef.pow(x,y))
     end
 
 
     x = T(Inf)
     ya = T[0.5, 1, 1.5, 2.0, 2.5, 3.0, 100000, 100000.5]
     for y in ya
-        @test Libm.pow(x,y) === T(Inf)
+        @test Sleef.pow(x,y) === T(Inf)
     end
  
 
     x = T(0.0)
     ya = T[-100001, -5, -3, -1]
     for y in ya
-        @test Libm.pow(x,y) ===  T(Inf)
+        @test Sleef.pow(x,y) ===  T(Inf)
     end
 
 
     x = T(-0.0)
     ya = T[-100001, -5, -3, -1]
     for y in ya
-        @test Libm.pow(x,y) ===  T(-Inf)
+        @test Sleef.pow(x,y) ===  T(-Inf)
     end
 
 
     xa = T[0.0, -0.0]
     ya = T[-100000.5, -100000, -4, -2.5, -2, -1.5, -0.5]
     for x in xa, y in ya
-        @test Libm.pow(x,y) === T(Inf)
+        @test Sleef.pow(x,y) === T(Inf)
     end
 
 
     xa = T[1000, -1000]
     ya = T[1000, 1000.5, 1001]
     for x in xa, y in ya
-        @test cmpdenorm(Libm.pow(x,y), Base.:^(BigFloat(x),BigFloat(y)))
+        @test cmpdenorm(Sleef.pow(x,y), Base.:^(BigFloat(x),BigFloat(y)))
     end
 
 end # denormal/nonumber pow
 
 
-fun_table = Dict(Libm.sin_fast => Base.sin, Libm.sin => Base.sin)
+fun_table = Dict(Sleef.sin_fast => Base.sin, Sleef.sin => Base.sin)
 @testset "denormal/nonnumber $xtrig" for (xtrig, trig) in fun_table
     xa = T[NaN, -0.0, 0.0, Inf, -Inf]
     for x in xa
@@ -243,7 +243,7 @@ fun_table = Dict(Libm.sin_fast => Base.sin, Libm.sin => Base.sin)
 end
 
 
-fun_table = Dict(Libm.cos_fast => Base.cos, Libm.cos => Base.cos)
+fun_table = Dict(Sleef.cos_fast => Base.cos, Sleef.cos => Base.cos)
 @testset "denormal/nonnumber $xtrig" for (xtrig, trig) in fun_table
     xa = T[NaN, Inf, -Inf]
     for x in xa
@@ -252,7 +252,7 @@ fun_table = Dict(Libm.cos_fast => Base.cos, Libm.cos => Base.cos)
 end
 
 
-@testset "denormal/nonnumber sin in $xsincos"for xsincos in (Libm.sincos_fast, Libm.sincos)
+@testset "denormal/nonnumber sin in $xsincos"for xsincos in (Sleef.sincos_fast, Sleef.sincos)
     xa = T[NaN, -0.0, 0.0, Inf, -Inf]
     for x in xa
         q = xsincos(x)[1]
@@ -261,7 +261,7 @@ end
 end
 
 
-@testset "denormal/nonnumber cos in $xsincos"for xsincos in (Libm.sincos_fast, Libm.sincos)
+@testset "denormal/nonnumber cos in $xsincos"for xsincos in (Sleef.sincos_fast, Sleef.sincos)
     xa = T[NaN, Inf, -Inf]
     for x in xa
         q = xsincos(x)[2]
@@ -270,7 +270,7 @@ end
 end
 
 
-@testset "denormal/nonnumber $xtan" for xtan in (Libm.tan_fast, Libm.tan)
+@testset "denormal/nonnumber $xtan" for xtan in (Sleef.tan_fast, Sleef.tan)
     xa = T[NaN, Inf, -Inf, -0.0, 0.0, pi/2, -pi/2]
     for x in xa
         @test cmpdenorm(xtan(x), Base.tan(BigFloat(x)))
@@ -278,7 +278,7 @@ end
 end
 
 
-fun_table = Dict(Libm.asin => Base.asin, Libm.asin_fast => Base.asin, Libm.acos => Base.acos, Libm.acos_fast => Base.acos)
+fun_table = Dict(Sleef.asin => Base.asin, Sleef.asin_fast => Base.asin, Sleef.acos => Base.acos, Sleef.acos_fast => Base.acos)
 @testset "denormal/nonnumber $xatrig" for (xatrig, atrig) in fun_table
     xa = T[NaN, Inf, -Inf, 2, -2, 1, -1]
     for x in xa
@@ -287,7 +287,7 @@ fun_table = Dict(Libm.asin => Base.asin, Libm.asin_fast => Base.asin, Libm.acos 
 end
 
 
-@testset "denormal/nonnumber $xatan" for xatan in (Libm.atan, Libm.atan_fast)
+@testset "denormal/nonnumber $xatan" for xatan in (Sleef.atan, Sleef.atan_fast)
     xa = T[NaN, Inf, -Inf]
     for x in xa
         @test cmpdenorm(xatan(x), Base.atan(BigFloat(x)))
@@ -298,7 +298,7 @@ end
 @testset "denormal/nonnumber exp" begin
     xa = T[NaN, Inf, -Inf, 10000, -10000]
     for x in xa
-        @test cmpdenorm(Libm.exp(x), Base.exp(BigFloat(x)))
+        @test cmpdenorm(Sleef.exp(x), Base.exp(BigFloat(x)))
     end
 end
 
@@ -306,7 +306,7 @@ end
 @testset "denormal/nonnumber sinh" begin
     xa = T[NaN, 0.0, -0.0, Inf, -Inf, 10000, -10000]
     for x in xa
-        @test cmpdenorm(Libm.sinh(x), Base.sinh(BigFloat(x)))
+        @test cmpdenorm(Sleef.sinh(x), Base.sinh(BigFloat(x)))
     end
 end
 
@@ -314,7 +314,7 @@ end
 @testset "denormal/nonnumber cosh" begin
     xa = T[NaN, 0.0, -0.0, Inf, -Inf, 10000, -10000]
     for x in xa
-        @test cmpdenorm(Libm.cosh(x),  Base.cosh(BigFloat(x)))
+        @test cmpdenorm(Sleef.cosh(x),  Base.cosh(BigFloat(x)))
     end
 end
 
@@ -322,7 +322,7 @@ end
 @testset "denormal/nonnumber tanh" begin
     xa = T[NaN, 0.0, -0.0, Inf, -Inf, 10000, -10000]
     for x in xa
-        @test cmpdenorm(Libm.tanh(x),  Base.tanh(BigFloat(x)))
+        @test cmpdenorm(Sleef.tanh(x),  Base.tanh(BigFloat(x)))
     end
 end
 
@@ -330,7 +330,7 @@ end
 @testset "denormal/nonnumber asinh" begin
     xa = T[NaN, 0.0, -0.0, Inf, -Inf, 10000, -10000]
     for x in xa
-        @test cmpdenorm(Libm.asinh(x), Base.asinh(BigFloat(x)))
+        @test cmpdenorm(Sleef.asinh(x), Base.asinh(BigFloat(x)))
     end
 end
 
@@ -338,7 +338,7 @@ end
 @testset "denormal/nonnumber acosh" begin
     xa = T[NaN, 0.0, -0.0, 1.0, Inf, -Inf, 10000, -10000]
     for x in xa
-        @test cmpdenorm(Libm.acosh(x), Base.acosh(BigFloat(x)))
+        @test cmpdenorm(Sleef.acosh(x), Base.acosh(BigFloat(x)))
     end
 end
 
@@ -346,15 +346,15 @@ end
 @testset "denormal/nonnumber atanh" begin
     xa = T[NaN, 0.0, -0.0, 1.0, -1.0, Inf, -Inf, 10000, -10000]
     for x in xa
-        @test cmpdenorm(Libm.atanh(x), Base.atanh(BigFloat(x)))
+        @test cmpdenorm(Sleef.atanh(x), Base.atanh(BigFloat(x)))
     end
 end
 
 
-@testset "denormal/nonnumber $xcbrt" for xcbrt = (Libm.cbrt, Libm.cbrt_fast)
+@testset "denormal/nonnumber $xcbrt" for xcbrt = (Sleef.cbrt, Sleef.cbrt_fast)
     xa = T[NaN, Inf, -Inf, 0.0, -0.0]
     for x in xa
-        @test cmpdenorm(Libm.cbrt(x), Base.cbrt(BigFloat(x)))
+        @test cmpdenorm(Sleef.cbrt(x), Base.cbrt(BigFloat(x)))
     end
 end
 
@@ -362,7 +362,7 @@ end
 @testset "denormal/nonnumber exp2" begin
     xa = T[NaN, Inf, -Inf]
     for x in xa
-        @test cmpdenorm(Libm.exp2(x), Base.exp2(BigFloat(x)))
+        @test cmpdenorm(Sleef.exp2(x), Base.exp2(BigFloat(x)))
     end
 end
 
@@ -370,7 +370,7 @@ end
 @testset "denormal/nonnumber exp10" begin
     xa = T[NaN, Inf, -Inf]
     for x in xa
-        @test cmpdenorm(Libm.exp10(x), Base.exp10(BigFloat(x)))
+        @test cmpdenorm(Sleef.exp10(x), Base.exp10(BigFloat(x)))
     end
 end
 
@@ -378,13 +378,13 @@ end
 @testset "denormal/nonnumber expm1" begin
     xa = T[NaN, Inf, -Inf]
     for x in xa
-        @test cmpdenorm(Libm.expm1(x), Base.expm1(BigFloat(x)))
+        @test cmpdenorm(Sleef.expm1(x), Base.expm1(BigFloat(x)))
     end
 end
 
 
 
-@testset "denormal/nonnumber $xlog" for xlog in (Libm.log, Libm.log_fast)
+@testset "denormal/nonnumber $xlog" for xlog in (Sleef.log, Sleef.log_fast)
     xa = T[NaN, Inf, -Inf, 0, -1]
     for x in xa
         @test cmpdenorm(xlog(x), Base.log(BigFloat(x)))
@@ -395,7 +395,7 @@ end
 @testset "denormal/nonnumber log10" begin
     xa = T[NaN, Inf, -Inf, 0, -1]
     for x in xa
-        @test cmpdenorm(Libm.log10(x), Base.log10(BigFloat(x)))
+        @test cmpdenorm(Sleef.log10(x), Base.log10(BigFloat(x)))
     end
 end
 
@@ -403,7 +403,7 @@ end
 @testset "denormal/nonnumber log2" begin
     xa = T[NaN, Inf, -Inf, 0, -1]
     for x in xa
-        @test cmpdenorm(Libm.log2(x), Base.log2(BigFloat(x)))
+        @test cmpdenorm(Sleef.log2(x), Base.log2(BigFloat(x)))
     end
 end
 
@@ -411,14 +411,14 @@ end
 @testset "denormal/nonnumber log1p" begin
     xa = T[NaN, Inf, -Inf, 0.0, -0.0, -1.0, -2.0]
     for x in xa
-        @test cmpdenorm(Libm.log1p(x), Base.log1p(BigFloat(x)))
+        @test cmpdenorm(Sleef.log1p(x), Base.log1p(BigFloat(x)))
     end
 end
 
 
 @testset "denormal/nonnumber ldexp" begin
     for i = -10000:10000
-        a = Libm.ldexp(T(1.0), i)
+        a = Sleef.ldexp(T(1.0), i)
         b = Base.ldexp(BigFloat(1.0), i)
         @test (isfinite(b) && a == b || cmpdenorm(a,b))
     end
@@ -426,11 +426,11 @@ end
 
 
 @testset "denormal/nonnumber ilog2" begin
-    @test Libm.ilog2(+T(Inf)) == typemax(Int)
-    @test Libm.ilog2(-T(Inf)) == typemax(Int)
-    @test Libm.ilog2(+T(0.0)) == typemin(Int)
-    @test Libm.ilog2(-T(0.0)) == typemin(Int)
-    @test Libm.ilog2( T(NaN)) == typemax(Int)
+    @test Sleef.ilog2(+T(Inf)) == typemax(Int)
+    @test Sleef.ilog2(-T(Inf)) == typemax(Int)
+    @test Sleef.ilog2(+T(0.0)) == typemin(Int)
+    @test Sleef.ilog2(-T(0.0)) == typemin(Int)
+    @test Sleef.ilog2( T(NaN)) == typemax(Int)
 end
 
 

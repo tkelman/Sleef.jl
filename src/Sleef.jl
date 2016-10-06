@@ -1,8 +1,5 @@
 __precompile__()
-module Libm
-
-include("Musl/Musl.jl")
-using .Musl
+module Sleef
 
 export sin, cos, tan, asin, acos, atan, atan2, sincos, sinh, cosh, tanh,
         asinh, acosh, atanh, log, log2, log10, log1p, ilog2, exp, exp2, exp10, expm1, ldexp, cbrt, pow

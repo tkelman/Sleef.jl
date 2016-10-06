@@ -1,7 +1,6 @@
 # Sleef.jl
-
 [![Travis Build Status](https://travis-ci.org/JuliaMath/Sleef.jl.svg?branch=master)](https://travis-ci.org/JuliaMath/Sleef.jl)
-[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/307l6b799amrpvks/branch/master?svg=true)](https://ci.appveyor.com/project/simonbyrne/Sleef-jl/branch/master)
+[![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/j7lpafn4uf1trlfi/branch/master?svg=true)](https://ci.appveyor.com/project/musm/sleef-jl/branch/master)
 [![Coverage Status](https://coveralls.io/repos/JuliaMath/Sleef.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/JuliaMath/Sleef.jl?branch=master)
 [![codecov.io](http://codecov.io/github/JuliaMath/Sleef.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaMath/Sleef.jl?branch=master)
 
