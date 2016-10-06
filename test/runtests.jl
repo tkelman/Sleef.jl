@@ -110,8 +110,6 @@ function runtests()
         include("dnml_nan.jl")
         include("accuracy.jl")
     end
-    include("log.jl")
-    include("erf.jl")
 end
 
 runtests()

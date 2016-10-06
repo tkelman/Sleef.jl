@@ -1,8 +1,8 @@
-The Libm.jl package is licensed under the MIT "Expat" License:
+The Sleef.jl package is licensed under the MIT "Expat" License:
 
-> Copyright (c) 2016: Mustafa Mohamad, Simon Byrne, and other contributors:
+> Copyright (c) 2016: Mustafa Mohamad and other contributors:
 > 
-> https://github.com/JuliaMath/Libm.jl/graphs/contributors
+> https://github.com/JuliaMath/Sleef.jl/graphs/contributors
 > 
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,6 @@ The Libm.jl package is licensed under the MIT "Expat" License:
 > SOFTWARE.
 > 
 
-Libm.jl includes code from the following projects, which have their own licenses:
+Sleef.jl includes ported code from the following project
 
-- [MUSL](http://git.musl-libc.org/cgit/musl/tree/COPYRIGHT) [MIT]
-- [sleef](https://github.com/shibatch/sleef) [public domain]
+- [sleef](https://github.com/shibatch/sleef) [public domain] Author Naoki Shibata
