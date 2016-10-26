@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/JuliaMath/Sleef.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/JuliaMath/Sleef.jl?branch=master)
 [![codecov.io](http://codecov.io/github/JuliaMath/Sleef.jl/coverage.svg?branch=master)](http://codecov.io/github/JuliaMath/Sleef.jl?branch=master)
 
-A port of the [SLEEF math library](https://github.com/shibatch/sleef) (original author Naoki Shibata) in pure Julia. This port includes a few extras including an `exp10` function and many bug fixes in the original code. It remains, however, not reliable for large argument values for the trigonometric functions. The library supports Float32 and Float64 types.
+A port of the [SLEEF math library](https://github.com/shibatch/sleef) (original author Naoki Shibata) in pure Julia. This port includes a few extras including an `exp10` function and many bug fixes over the original code (see the [issues](https://github.com/JuliaMath/Sleef.jl/issues)  for a list of warnings with this library. The library supports Float32 and Float64 types.
 
 
 # Usage
