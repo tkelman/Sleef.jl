@@ -6,6 +6,7 @@
 
 A port of the [SLEEF math library](https://github.com/shibatch/sleef) (original author Naoki Shibata) in pure Julia. This port includes a few extras including an `exp10` function and many bug fixes over the original code ([see](https://github.com/JuliaMath/Sleef.jl/issues)  for a list of remanining issues that have not been fixed upstream). The library supports `Float32` and `Float64` types.
 
+Based on SLEEF version 2.80 (with additional bugfixes).
 
 # Usage
 
